@@ -1,5 +1,6 @@
 import { useReducer } from "react";
-import Imoon from "../public/assets/destination/image-moon.png";
+import desktop from "../public/assets/destination/background-destination-desktop.jpg";
+import Image from "next/image";
 import dReducer, { dInitialState } from "../External/destiReducer";
 
 export default function destination() {
@@ -8,7 +9,10 @@ export default function destination() {
     dispatch({type: e.target.innerHTML});
   }
   return (
-    <section className="py-12 px-32 flex flex-col gap-10 ">
+    <section className="py-6 px-32 flex flex-col gap-10 ">
+    <div className="-z-10">
+    <Image src={desktop} layout="fill" alt="bg-destination"/>
+    </div>
       <h1 className="text-2xl uppercase flex gap-12">
         <span>01</span>
         <span>Pick your destination</span>
