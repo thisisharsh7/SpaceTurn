@@ -4,7 +4,7 @@ import logo from "../public/assets/shared/logo.svg"
 
 export default function Header() {
   return (
-    <header className="xl:py-5 py-3" >
+    <header className="xl:py-2 py-3" >
       <nav className="xl:p-10 p-5 flex items-center justify-between">
       <div className="flex w-24">
         <Image src={logo} alt="logo" />

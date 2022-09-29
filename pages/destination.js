@@ -9,18 +9,20 @@ export default function destination() {
     dispatch({type: e.target.innerHTML});
   }
   return (
-    <section className="py-6 px-32 flex flex-col gap-10 ">
-    <div className="-z-10">
+    <section className="xl:pl-24 pl-5 flex flex-col">
+    <div className="-z-10 ">
     <Image src={desktop} layout="fill" alt="bg-destination"/>
     </div>
-      <h1 className="text-2xl uppercase flex gap-12">
+      <h1 className="text-2xl uppercase flex gap-12 pb-10">
         <span>01</span>
         <span>Pick your destination</span>
       </h1>
-      <div className="flex justify-between">
-        <img src={state.images.png} alt={state.name} />
-        <div className="max-w-min flex flex-col gap-10">
-          <ul className="flex gap-16 uppercase">
+      <div className="flex justify-between items-center">
+        <img src={state.images.png} alt={state.name} className=""/>
+
+        <div className="max-w-min flex flex-col pb-8 xl:mr-32 gap-10 ">
+        <div className="">
+        <ul className="flex gap-16 uppercase">
             <li onClick={changeText} className="cursor-pointer">
               Moon
             </li>
@@ -34,8 +36,9 @@ export default function destination() {
               Titan
             </li>
           </ul>
+        </div>
           <h1 className="text-6xl">{state.name}</h1>
-          <p>{state.description}</p>
+          <p className="h-24">{state.description}</p>
           <hr />
           <div className="flex justify-between">
             <div className="flex flex-col gap-2 items-center uppercase">
