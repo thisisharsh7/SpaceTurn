@@ -24,18 +24,26 @@ export default function crew() {
           </div>
         </div>
         <ul className="flex gap-16 uppercase">
-          <li onClick={changeCrew} className="cursor-pointer" id="1">
-            Moon
-          </li>
-          <li onClick={changeCrew} className="cursor-pointer" id="2">
-            Mars
-          </li>
-          <li onClick={changeCrew} className="cursor-pointer" id="3">
-            Europa
-          </li>
-          <li onClick={changeCrew} className="cursor-pointer" id="4">
-            Titan
-          </li>
+          <li
+            onClick={changeCrew}
+            className="cursor-pointer w-4 p-4 rounded-full bg-white"
+            id="1"
+          ></li>
+          <li
+            onClick={changeCrew}
+            className="cursor-pointer w-4 p-4 rounded-full bg-white"
+            id="2"
+          ></li>
+          <li
+            onClick={changeCrew}
+            className="cursor-pointer w-4 p-4 rounded-full bg-white"
+            id="3"
+          ></li>
+          <li
+            onClick={changeCrew}
+            className="cursor-pointer w-4 p-4 rounded-full bg-white"
+            id="4"
+          ></li>
         </ul>
       </div>
       <img src={state.images.png} alt={state.name} />
