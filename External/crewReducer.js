@@ -1,11 +1,14 @@
 export const cInitialState = {
-  role: "",
-  name: "",
-  bio: "",
-  images: {},
+  name: "Douglas Hurley",
+  images: {
+    png: "./assets/crew/image-douglas-hurley.png",
+    webp: "./assets/crew/image-douglas-hurley.webp",
+  },
+  role: "Commander",
+  bio: "Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.",
 };
 
-export const cReducer = (state, action) => {
+export default function cReducer(state, action) {
   switch (action.type) {
     case "1":
       return {
@@ -47,5 +50,7 @@ export const cReducer = (state, action) => {
         role: "Flight Engineer",
         bio: "Anousheh Ansari is an Iranian American engineer and co-founder of Prodea Systems. Ansari was the fourth self-funded space tourist, the first self-funded woman to fly to the ISS, and the first Iranian in space.",
       };
+    default:
+      return state;
   }
-};
+}

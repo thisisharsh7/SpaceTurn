@@ -1,10 +1,14 @@
 export const tInitialState = {
-  term: "",
-  description: "",
-  images: {},
+  term: "Launch vehicle",
+  images: {
+    portrait: "./assets/technology/image-launch-vehicle-portrait.jpg",
+    landscape: "./assets/technology/image-launch-vehicle-landscape.jpg",
+  },
+  description:
+    "A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!",
 };
 
-export const tReducer = (state, action) => {
+export default function tReducer(state, action) {
   switch (action.type) {
     case "1":
       return {
@@ -36,5 +40,7 @@ export const tReducer = (state, action) => {
         description:
           "A space capsule is an often-crewed spacecraft that uses a blunt-body reentry capsule to reenter the Earth's atmosphere without wings. Our capsule is where you'll spend your time during the flight. It includes a space gym, cinema, and plenty of other activities to keep you entertained.",
       };
+    default:
+      return state;
   }
-};
+}
