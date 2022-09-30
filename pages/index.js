@@ -7,12 +7,14 @@ import tablet from "../public/assets/home/background-home-tablet.jpg";
 export default function Home() {
   return (
     <section className="home flex pt-20 pb-5">
-      {/* <picture>
-        <source media="(max-width:440px)" srcSet={mobile} />
-        <img src={desktop} alt="bg-home" />
-      </picture> */}
       <div className="-z-10">
         <Image src={desktop} layout="fill" alt="bg-home" />
+      </div>
+      <div className="-z-10 md:hidden">
+        <Image src={tablet} layout="fill" alt="bg-home" />
+      </div>
+      <div className="-z-10 sm:hidden">
+        <Image src={mobile} layout="fill" alt="bg-home" />
       </div>
       <div className="flex sm:flex-row flex-col sm:gap-3 gap-12 w-full justify-between flex-wrap">
         <div className="max-w-min flex flex-col xl:pl-24 pl-5">

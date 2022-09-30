@@ -18,9 +18,9 @@ export default function destination() {
         <span>Pick your destination</span>
       </h1>
       <div className="flex justify-between items-center">
-        <img src={state.images.png} alt={state.name} className=""/>
+        <img src={state.images.webp} alt={state.name} className=""/>
 
-        <div className="max-w-min flex flex-col pb-8 xl:mr-32 gap-10 ">
+        <div className="max-w-min flex flex-col pb-8 xl:mr-32 mr-5 gap-10 ">
         <div className="">
         <ul className="flex gap-16 uppercase">
             <li onClick={changeText} className="cursor-pointer">

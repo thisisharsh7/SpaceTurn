@@ -1,5 +1,7 @@
 import { useReducer } from "react";
 import cReducer, { cInitialState } from "../External/crewReducer";
+import Image from "next/image";
+import desktop from "../public/assets/crew/background-crew-desktop.jpg";
 
 export default function crew() {
   const [state, dispatch] = useReducer(cReducer, cInitialState);
@@ -8,22 +10,29 @@ export default function crew() {
   }
 
   return (
-    <section className="py-12 px-32 flex gap-10  bg-blue-700  ">
-      <h1 className="text-2xl uppercase">02</h1>
-      <div className="flex flex-col gap-20 bg-red-800">
-        <h1 className="text-2xl uppercase">Meet your crew</h1>
-        <div className="flex justify-between">
+    <section className="py-12 px-32 flex">
+    <div className="-z-10">
+      <Image src={desktop} layout="fill" alt="desktop" />
+    </div>
+      <h1 className="text-3xl uppercase">02</h1>
+   
+    <div className=" flex gap-40 items-start md:flex-nowrap flex-wrap-reverse justify-center">
+      
+      <div className="flex flex-col gap-20 xl:w-2/5 md:w-1/2 sm:w-full">
+      <div className="h-80 flex flex-col gap-8">
+        <h1 className="text-3xl uppercase">Meet your crew</h1>
+        <div className="flex justify-between ">
           <div className="flex flex-col  gap-16">
-            <div className="max-w-min flex flex-col gap-3">
+            <div className="w-full flex flex-col gap-3">
               <h1 className="uppercase text-2xl">{state.role}</h1>
-              <h1 className="text-5xl uppercase min-w-max pb-12">
-                {state.name}
-              </h1>
-              <p>{state.bio}</p>
+              <h1 className="text-5xl uppercase pb-12 w-max">{state.name}</h1>
+              <p className="">{state.bio}</p>
             </div>
           </div>
         </div>
-        <ul className="flex gap-16 uppercase">
+      </div>
+      <div>
+      <ul className="flex gap-16 uppercase">
           <li
             onClick={changeCrew}
             className="cursor-pointer w-4 p-4 rounded-full bg-white"
@@ -46,7 +55,9 @@ export default function crew() {
           ></li>
         </ul>
       </div>
-      <img src={state.images.png} alt={state.name} className=""/>
+      </div>
+      <img src={state.images.png} alt={state.name} className="w-72 self-end" />
+    </div>
     </section>
   );
 }
