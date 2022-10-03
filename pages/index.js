@@ -3,11 +3,23 @@ import Image from "next/image";
 import mobile from "../public/assets/home/background-home-mobile.jpg";
 import desktop from "../public/assets/home/background-home-desktop.jpg";
 import tablet from "../public/assets/home/background-home-tablet.jpg";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
+  const [setTrans , getTrans] = useState("opacity-0");
+  useEffect(()=>{
+    if(router.pathname == "/"){
+      getTrans("opacity-100");
+    }else{
+      getTrans("opacity-0")
+    }
+  },[])
+  
   return (
-    <section className="home flex pt-20 pb-5">
-      <div className="-z-10">
+    <section className={(router.pathname == "/") ? `home flex pt-20 pb-5 transition-opacity duration-1000 ${setTrans}` : "home flex pt-20 pb-5"}>
+      <div className="-z-10 relative">
         <Image src={desktop} layout="fill" alt="bg-home" />
       </div>
       <div className="-z-10 md:hidden">

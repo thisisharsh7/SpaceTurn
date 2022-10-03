@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export default function Header() {
   const router = useRouter();
   return (
-    <header className="xl:py-2 py-3">
+    <header className="xl:py-2 py-3 z-40">
       <nav className="xl:p-10 p-5 flex items-center justify-between">
         <div className="flex w-24">
           <Image src={logo} alt="logo" />
@@ -18,7 +18,7 @@ export default function Header() {
               <a
                 className={
                   router.pathname == "/"
-                    ? "flex gap-3 font-normal p-1 xl:text-2xl text-xl before:content-[''] before:bg-white before:h-0.5  before:w-full relative before:absolute before:-bottom-1 before:rounded-full"
+                    ? "flex gap-3 font-normal p-1 xl:text-2xl text-xl before:content-[''] before:bg-white before:h-0.5 before:w-full relative before:absolute before:-bottom-1 before:rounded-full"
                     : "flex gap-3 font-normal p-1 xl:text-2xl text-xl before:content-[''] before:bg-white before:h-0.5 relative before:absolute before:-bottom-1 before:rounded-full "
                 }
               >
