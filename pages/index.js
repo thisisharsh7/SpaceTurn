@@ -5,48 +5,80 @@ import desktop from "../public/assets/home/background-home-desktop.jpg";
 import tablet from "../public/assets/home/background-home-tablet.jpg";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const router = useRouter();
-  const [setTrans , getTrans] = useState("opacity-0");
-  useEffect(()=>{
-    if(router.pathname == "/"){
+  const [setTrans, getTrans] = useState("opacity-0");
+
+  useEffect(() => {
+    if (router.pathname == "/") {
       getTrans("opacity-100");
-    }else{
-      getTrans("opacity-0")
+    } else {
+      getTrans("opacity-0");
     }
-  },[])
-  
+  }, []);
+
   return (
-    <section className={(router.pathname == "/") ? `home flex pt-20 pb-5 transition-opacity duration-1000 ${setTrans}` : "home flex pt-20 pb-5"}>
-      <div className="-z-10 relative">
-        <Image src={desktop} layout="fill" alt="bg-home" />
-      </div>
-      <div className="-z-10 md:hidden">
-        <Image src={tablet} layout="fill" alt="bg-home" />
-      </div>
-      <div className="-z-10 sm:hidden">
-        <Image src={mobile} layout="fill" alt="bg-home" />
-      </div>
-      <div className="flex sm:flex-row flex-col sm:gap-3 gap-12 w-full justify-between flex-wrap">
-        <div className="max-w-min flex flex-col xl:pl-24 pl-5">
-          <p className="uppercase sm:text-2xl text-base">
-            So, you want to travel to
-          </p>
-          <h1 className=" uppercase sm:text-9xl text-7xl tracking-widest  xl:font-extrabold font-bold pb-12">
-            Space
-          </h1>
-          <p className="text-base">
-            Let’s face it; if you want to go to space, you might as well
-            genuinely go to outer space and not hover kind of on the edge of it.
-            Well sit back, and relax because we’ll give you a truly out of this
-            world experience!
-          </p>
+    <section
+      className={`home flex items-center pt-36 pb-24 justify-center min-h-screen transition-opacity duration-1000 ${setTrans}`}
+    >
+     
+      <div className="fixed inset-0 z-0 h-full w-full">
+        <div className="block sm:hidden">
+          <Image src={mobile} alt="Background" layout="fill" objectFit="cover" />
         </div>
-        <div className="bg-white self-end xl:mr-20 mr-3 hover:bg-red-200 text-gray-900 sm:text-3xl sm:px-10 sm:py-20 text-2xl px-8 py-16 rounded-full">
-          <Link href="/destination">
-            <h2 className="cursor-pointer uppercase">Explore</h2>
-          </Link>
+        <div className="hidden sm:block lg:hidden">
+          <Image src={tablet} alt="Background" layout="fill" objectFit="cover" />
+        </div>
+        <div className="hidden lg:block">
+          <Image src={desktop} alt="Background" layout="fill" objectFit="cover" />
+        </div>
+      </div>
+
+     
+      <div className="relative z-10 w-full px-6 sm:px-10 md:px-20 xl:px-40">
+        <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-16 text-white text-center lg:text-left">
+         
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="max-w-xl flex flex-col"
+          >
+            <p className="uppercase sm:text-2xl text-base tracking-widest mb-3 ">
+              So, you want to travel to
+            </p>
+            <h1 className="uppercase sm:text-9xl text-6xl tracking-widest font-extrabold sm:pb-12 pb-8 ">
+              Space
+            </h1>
+            <p className="sm:text-lg text-sm text-gray-300 leading-relaxed">
+              Let’s face it; if you want to go to space, you might as well
+              genuinely go to outer space and not hover kind of on the edge of it.
+              Well sit back, and relax because we’ll give you a truly out of this
+              world experience!
+            </p>
+          </motion.div>
+
+         
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 1.2,
+              delay: 0.4,
+              type: "spring",
+              stiffness: 100,
+            }}
+          >
+            <Link href="/destination">
+              <div className="group w-40 h-40 sm:w-60 sm:h-60 bg-white rounded-full flex items-center justify-center transition-all duration-300 hover:ring-[40px] hover:ring-[#ffffff30] cursor-pointer">
+                <span className="uppercase text-xl sm:text-2xl tracking-widest font-semibold text-gray-900 group-hover:text-red-400 transition-all duration-300">
+                  Explore
+                </span>
+              </div>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

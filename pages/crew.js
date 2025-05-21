@@ -1,63 +1,89 @@
-import { useReducer } from "react";
-import cReducer, { cInitialState } from "../External/crewReducer";
+import { useReducer, useEffect, useState } from "react";
 import Image from "next/image";
+import cReducer, { cInitialState } from "../External/crewReducer";
 import desktop from "../public/assets/crew/background-crew-desktop.jpg";
+import tablet from "../public/assets/crew/background-crew-tablet.jpg";
+import mobile from "../public/assets/crew/background-crew-mobile.jpg";
+import { motion } from "framer-motion";
 
-export default function crew() {
+export default function Crew() {
   const [state, dispatch] = useReducer(cReducer, cInitialState);
+  const [transitionState, setTransitionState] = useState("opacity-0");
+
+  useEffect(() => {
+    setTransitionState("opacity-100");
+  }, []);
+
   function changeCrew(e) {
     dispatch({ type: e.target.id });
   }
 
   return (
-    <section className="py-12 px-32 flex">
-    <div className="-z-10">
-      <Image src={desktop} layout="fill" alt="desktop" />
-    </div>
-      <h1 className="text-3xl uppercase">02</h1>
-   
-    <div className=" flex gap-40 items-start md:flex-nowrap flex-wrap-reverse justify-center">
-      
-      <div className="flex flex-col gap-20 xl:w-2/5 md:w-1/2 sm:w-full">
-      <div className="h-80 flex flex-col gap-8">
-        <h1 className="text-3xl uppercase">Meet your crew</h1>
-        <div className="flex justify-between ">
-          <div className="flex flex-col  gap-16">
-            <div className="w-full flex flex-col gap-3">
-              <h1 className="uppercase text-2xl">{state.role}</h1>
-              <h1 className="text-5xl uppercase pb-12 w-max">{state.name}</h1>
-              <p className="">{state.bio}</p>
-            </div>
-          </div>
+    <section className={`relative min-h-[100vh] pt-36  pb-24 transition-opacity duration-1000 ${transitionState}`}>
+     
+      <div className="fixed inset-0 z-0 h-full w-full">
+        <div className="block sm:hidden">
+          <Image src={mobile} alt="Background" layout="fill" objectFit="cover" />
+        </div>
+        <div className="hidden sm:block lg:hidden">
+          <Image src={tablet} alt="Background" layout="fill" objectFit="cover" />
+        </div>
+        <div className="hidden lg:block">
+          <Image src={desktop} alt="Background" layout="fill" objectFit="cover" />
         </div>
       </div>
-      <div>
-      <ul className="flex gap-16 uppercase">
-          <li
-            onClick={changeCrew}
-            className="cursor-pointer w-4 p-4 rounded-full bg-white"
-            id="1"
-          ></li>
-          <li
-            onClick={changeCrew}
-            className="cursor-pointer w-4 p-4 rounded-full bg-white"
-            id="2"
-          ></li>
-          <li
-            onClick={changeCrew}
-            className="cursor-pointer w-4 p-4 rounded-full bg-white"
-            id="3"
-          ></li>
-          <li
-            onClick={changeCrew}
-            className="cursor-pointer w-4 p-4 rounded-full bg-white"
-            id="4"
-          ></li>
-        </ul>
+
+     
+      <div className="relative z-10 w-full px-6 sm:px-10 md:px-20 xl:px-40 text-white">
+        <motion.h1
+          className="text-2xl uppercase tracking-widest flex gap-6 pb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <span className="opacity-50 font-bold">02</span>
+          <span>Meet your crew</span>
+        </motion.h1>
+
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-12 justify-between">
+         
+          <motion.div
+            className="flex flex-col gap-8 text-center lg:text-left max-w-xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <div>
+              <p className="uppercase text-gray-400 lg:text-xl md:text-lg text-base">{state.role}</p>
+              <h2 className="text-2xl sm:text-5xl lg:text-6xl uppercase font-bold pb-4">{state.name}</h2>
+              <p className="text-gray-300 leading-relaxed">{state.bio}</p>
+            </div>
+
+           
+            <ul className="flex justify-center lg:justify-start gap-4 pt-6">
+              {[1, 2, 3, 4].map((id) => (
+                <li
+                  key={id}
+                  id={id.toString()}
+                  onClick={changeCrew}
+                  className={`cursor-pointer w-4 h-4 rounded-full transition-all duration-300 ${state.id === id ? "bg-white" : "bg-gray-500"
+                    }`}
+                />
+              ))}
+            </ul>
+          </motion.div>
+
+         
+          <motion.img
+            src={state.images.png}
+            alt={state.name}
+            className="w-60 sm:w-72 lg:w-96"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+          />
+        </div>
       </div>
-      </div>
-      <img src={state.images.png} alt={state.name} className="w-72 self-end" />
-    </div>
     </section>
   );
 }
